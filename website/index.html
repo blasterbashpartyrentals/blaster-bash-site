@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blaster Bash Party Rentals</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--blue:#0ea5e9;--blue-soft:#f0f9ff;--blue-dark:#075985;--accent:#ec4899;--accent2:#facc15;--white:#ffffff;--text:#111827;--border:#e5e7eb;}*{box-sizing:border-box}body{margin:0;font-family:'Poppins',sans-serif;background:var(--blue-soft);color:var(--text);} 
+
+
+/* HERO WITH OVERLAY */
+.hero-image{position:relative;}
+.hero-image img{width:100%;height:auto;display:block;}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+.hero-overlay h1{
+  color:#fff;
+  font-size:40px;
+  margin:0;
+  font-weight:700;
+}
+.hero-overlay p{
+  color:#f3f4f6;
+  margin-top:8px;
+  font-size:16px;
+}
+
+.container{max-width:1000px;margin:auto;padding:20px;} 
+.section{background:var(--white);border-radius:14px;padding:22px;margin:20px 0;border:1px solid var(--border);box-shadow:0 8px 22px rgba(37,99,235,.10);} 
+.section h2{margin-top:0;color:var(--blue-dark);} 
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;} 
+.card{background:#fff;border-radius:10px;padding:16px;border:1px solid var(--border);} 
+.card img{width:100%;height:200px;object-fit:cover;object-position:center; border-radius:8px;margin-bottom:10px;cursor:pointer;transition:.2s;background:#f3f4f6;} 
+.card img.img-classic{object-position:center 35%;}
+.card img.img-tall{object-position:center 20%;} 
+.card img:hover{transform:scale(1.03);} 
+
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9999;} 
+.lightbox img{max-width:90%;max-height:85vh;border-radius:10px;} 
+.lightbox.active{display:flex;} 
+
+.btn{padding:11px 18px;border-radius:8px;border:none;font-weight:600;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;} 
+.btn-blue{background:var(--blue);color:white}
+.btn-hero{background:var(--accent);color:#fff;padding:12px 20px;border-radius:10px;margin-top:14px;}
+.btn-hero:hover{opacity:.92} 
+footer{text-align:center;padding:20px;font-size:14px;opacity:.7;}
+
+/* Accordion FAQ */
+.faq-item{border:1px solid var(--border);border-radius:10px;background:#fff;overflow:hidden;margin-bottom:12px;}
+.faq-q{width:100%;text-align:left;background:#fff;border:0;cursor:pointer;padding:14px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:var(--blue-dark);display:flex;align-items:center;justify-content:space-between;}
+.faq-a{display:none;padding:0 14px 14px;color:#374151;font-size:14px;line-height:1.45;}
+.faq-item.open .faq-a{display:block;}
+
+/* Gallery UI (arrows + dots) */
+.lb-ui{position:fixed;inset:0;display:none;z-index:10000;pointer-events:none;}
+.lightbox.active + .lb-ui{display:block;}
+.lb-arrow{
+  pointer-events:auto;
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  width:52px;height:52px;
+  border-radius:999px;
+  border:none;
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  font-size:34px;
+  cursor:pointer;
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.lb-prev{left:18px;}
+.lb-next{right:18px;}
+.lb-dots{
+  pointer-events:auto;
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:26px;
+  display:none;
+  gap:8px;
+}
+.lb-dot{
+  width:10px;height:10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.35);
+  cursor:pointer;
+}
+.lb-dot.active{background:#fff;}
+</style>
+</head>
+<body>
+
+
+<div class="hero-image">
+<img src="images/BlasterBashPartyRentalsLLC Cover Photo.png" alt="Blaster Bash Party Rentals">
+</div>
+
+<div class="container">
+
+<div class="section">
+<h2>About Us</h2>
+<p><strong>DIY Nerf Wars and Yard Game</strong> rental company offering fun, affordable entertainment for birthdays, graduations, sleepovers, backyard BBQs, and more.</p>
+<p>We provide full weekend rentals with simple pickup in <strong>Beavercreek</strong>, making it easy for families to host memorable events without premium party pricing.</p>
+<p>Weekend rentals — Pick up Friday and return by Monday night.</p>
+</div>
+
+<div class="section">
+<h2>Rentals & Packages</h2>
+<p style="margin-top:-6px;font-size:13px;color:#6b7280;">All prices include tax.</p>
+<div class="grid">
+
+<div class="card">
+<img src="images/nerf-wars.jpg" alt="Nerf Wars Package" onclick="openGallery('nerf',0)">
+<strong>Nerf Wars – $60 Weekend Rental</strong>
+<ul>
+<li>25 blasters</li>
+<li>250 darts</li>
+<li>25 safety glasses</li>
+<li>6 inflatable barricades</li>
+<li>Electric air pump</li>
+<li>2 storage totes — 30.6" L × 20.6" W × 14.3" H (each)</li>
+</ul>
+</div>
+
+<div class="card">
+<img class="img-classic" src="images/classic-yard-games.png" alt="Classic Yard Games Package" onclick="openLightbox(this.src)">
+<strong>Classic Yard Games – $60 Weekend Rental</strong>
+<ul>
+<li>Giant Jenga</li>
+<li>Cornhole</li>
+<li>Washers</li>
+<li>Yard Yatzee</li>
+</ul>
+</div>
+
+<div class="card">
+<img class="img-tall" src="images/mega-yard-games.png" alt="Mega Yard Games Package" onclick="openLightbox(this.src)">
+<strong>Mega Yard Games – $60 Weekend Rental</strong>
+<ul>
+<li>Giant Kerplunk</li>
+<li>Giant Connect 4</li>
+<li>Giant Tetris</li>
+<li>Yard Yatzee</li>
+</ul>
+</div>
+
+</div>
+
+<p style="margin-top:14px;font-size:14px;color:#4b5563;">
+<strong>Weekend Rental:</strong> Pick up in Beavercreek on Friday and return by Monday night.<br>
+<strong><span style="font-weight:800;">$40</span> refundable security deposit required</strong><br>
+<strong>Inquire about weekday availability, if needed!</strong>
+</p>
+
+<h3 style="color:var(--blue-dark);">Why Choose Us?</h3>
+<ul style="margin-left:18px;line-height:1.6;">
+<li><strong>Full Weekend Rentals</strong> – Friday through Monday with no rushed party windows.</li>
+<li><strong>Affordable & Simple</strong> – DIY setup keeps pricing low and straightforward.</li>
+<li><strong>Flexible Options</strong> – Optional delivery for an additional fee (when available).</li>
+<li><strong>Clean & Organized</strong> – Equipment is inspected and cleaned, ready for your celebration.</li>
+</ul>
+
+<h3 style="color:var(--blue-dark);">Important Size Information</h3>
+<ul style="margin-left:18px;line-height:1.6;">
+<li><strong>Cornhole Boards:</strong> Approx. 48" L x 24" W each (set of 2 boards).</li>
+<li><strong>Giant Kerplunk:</strong> Approx. 5 ft tall. Largest diameter approx. 24 inches.</li>
+<li><strong>Giant Connect 4:</strong> Folds to approx. 47" x 20" x 12" for transport.</li>
+<li><strong>Nerf Wars Storage Totes:</strong> 2 totes — 30.6" L × 20.6" W × 14.3" H (each).</li>
+</ul>
+<p style="font-size:14px;color:#4b5563;">SUVs, vans, or vehicles with fold-down seats are recommended. Unsure if it will fit? Reach out for dimension clarification before pickup.</p>
+
+</div>
+
+<div class="section">
+<h2>Add-On Games</h2>
+<div class="grid">
+  <div class="card">
+    <img src="images/axe-throwing.png" alt="Axe Throwing & Lawn Dart Combo" onclick="openLightbox(this.src)">
+    <strong>Axe Throwing & Lawn Dart Combo</strong> – $10 add-on
+  </div>
+  <div class="card">
+    <img src="images/spikeball.png" alt="Spikeball Game" onclick="openLightbox(this.src)">
+    <strong>Spikeball</strong> – $10 add-on
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h2>FAQ</h2>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">How do I book?</button>
+  <div class="faq-a">Fill out the booking request form below and we will text/email you to confirm date availability. If items are available, we’ll send an invoice for your <strong>100% refundable security deposit</strong>, an invoice for your rental package, and a rental contract to sign. Once the deposit and signed contract are received, your date is officially booked.</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">How does the deposit work?</button>
+  <div class="faq-a">A <strong>$40 refundable security deposit</strong> is due within 48 hours of your invoice to secure your date. This deposit does not go toward the package price — it protects against late returns, missing items, or damage. As long as items are returned on time, CLEAN, DRY, and complete, your <strong>100% refundable security deposit</strong> will be returned after inspection (typically within 3 business days).</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">When is payment due?</button>
+  <div class="faq-a">Your security deposit is due within 48 hours of receiving your invoice. You may pay both the deposit AND the cost of your package at the same time OR pay them separately. Your package payment is due one week prior to your reservation date.</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">How long is the rental?</button>
+  <div class="faq-a">All rentals are for the full weekend. Pick up in Beavercreek on Friday and return by Monday at 7 p.m. A <strong>$20 late fee</strong> applies after 7 p.m.</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">What time is pick up and return?</button>
+  <div class="faq-a">We will contact you at the beginning of the week of your reservation to arrange a time for pick up and return. Items will be outside and ready for you to grab with no in-person contact needed. You will then simply return the items by 7 p.m. Monday night to the same location. Just send a text of your return time frame, so that we can confirm the return occurred. Is it easier for you to return Sunday night? Not a problem—just communicate and we will come up with a plan!</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">Can I pick up or return on a different day?</button>
+  <div class="faq-a">Yes! Sunday returns are common. Just communicate your needs and we can most likely accommodate.</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">What does DIY mean?</button>
+  <div class="faq-a">DIY means you pick up the rental in Beavercreek, set it up yourself, clean it up, and return it after your weekend rental. Items need to be returned CLEAN and DRY. This helps us keep prices affordable while still giving you a full weekend of fun.</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">Are there late or cleaning fees?</button>
+  <div class="faq-a">We understand weekends can get busy! Rentals returned after Monday at 7 p.m. will incur a <strong>$20 late fee</strong>. All items must be returned CLEAN and DRY. If additional cleaning is required, a <strong>$25+ cleaning fee</strong> may be deducted from the deposit depending on the condition.</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">Do I have to sign a contract?</button>
+  <div class="faq-a">Yes. A simple rental contract is required to confirm your booking. The contract outlines pickup times, return expectations, and equipment care so everyone is on the same page.</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">Is delivery available?</button>
+  <div class="faq-a">Our DIY package does NOT include delivery. However, if we have availability, delivery is possible for an additional fee, which depends on your location. Delivery fees start at <strong>$10</strong>.</div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-q" type="button">What if I need to cancel?</button>
+  <div class="faq-a">If a booking is cancelled 21 days or more before the scheduled event, your security deposit will be fully refunded. If cancelled 15–20 days before the event, you may reschedule within 6 months at no additional cost. If cancelled within 14 days of the event, the security deposit is non-refundable.</div>
+</div>
+
+</div>
+
+<div class="section" id="booking">
+<h2>Booking Request</h2>
+
+<form name="booking" method="POST" data-netlify="true">
+  <input type="hidden" name="form-name" value="booking">
+
+  <input type="text" name="name" placeholder="Your Name" required style="width:100%;padding:10px;margin-bottom:10px;">
+  <input type="email" name="email" placeholder="Your Email" required style="width:100%;padding:10px;margin-bottom:10px;">
+  <input type="tel" name="phone" placeholder="Your Phone Number" required style="width:100%;padding:10px;margin-bottom:10px;">
+  <input type="text" name="event_date" placeholder="Event Date" style="width:100%;padding:10px;margin-bottom:10px;">
+  <textarea name="requested_rental" placeholder="What would you like to rent?" style="width:100%;padding:10px;margin-bottom:10px;"></textarea>
+  <textarea name="suggestions" placeholder="Are there any rental items you wish we offered? (Optional — suggestions welcome!)" style="width:100%;padding:10px;margin-bottom:10px;"></textarea>
+  <button class="btn btn-blue" type="submit">Send Request</button>
+</form>
+
+</div>
+
+</div>
+
+<footer>
+  <div style="max-width:1000px;margin:0 auto; padding:0 20px;">
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;margin-bottom:10px;">
+      <a href="mailto:blasterbashpartyrentals@gmail.com" style="color:inherit;text-decoration:none;"><i class="fa-solid fa-envelope"></i> blasterbashpartyrentals@gmail.com</a>
+      <span style="opacity:.6;">|</span>
+      <a href="tel:9373191444" style="color:inherit;text-decoration:none;"><i class="fa-solid fa-phone"></i> Call/Text 937-319-1444</a>
+      <span style="opacity:.6;">|</span>
+      <a href="https://www.facebook.com/profile.php?id=61587143950280" target="_blank" aria-label="Facebook" style="color:inherit;text-decoration:none;font-size:18px;"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.instagram.com/blasterbashpartyrentals/#" target="_blank" aria-label="Instagram" style="color:inherit;text-decoration:none;font-size:18px;"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+    © 2026 Blaster Bash Party Rentals
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img" src="">
+</div>
+
+<div class="lb-ui" id="lb-ui">
+  <button class="lb-arrow lb-prev" id="lb-prev" type="button" onclick="event.stopPropagation(); galleryPrev()">‹</button>
+  <button class="lb-arrow lb-next" id="lb-next" type="button" onclick="event.stopPropagation(); galleryNext()">›</button>
+  <div class="lb-dots" id="lb-dots"></div>
+</div>
+
+<script>
+// FAQ accordion - only one open
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item = btn.parentElement;
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      if(i!==item) i.classList.remove('open');
+    });
+    item.classList.toggle('open');
+  });
+});
+
+function openLightbox(src){
+  galleryActive = false;
+  document.getElementById('lb-prev').style.display = 'none';
+  document.getElementById('lb-next').style.display = 'none';
+  document.getElementById('lb-dots').style.display = 'none';
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('active');
+  document.getElementById('lb-prev').style.display = 'none';
+  document.getElementById('lb-next').style.display = 'none';
+  document.getElementById('lb-dots').style.display = 'none';
+  galleryActive = false;
+}
+
+const galleries = {
+  nerf: [
+    "images/nerf-wars.jpg",
+    "images/nerf-wars/nerf-02-blasters.jpg",
+    "images/nerf-wars/nerf-03-open-totes.jpg",
+    "images/nerf-wars/nerf-04-closed-totes.jpg"
+  ]
+};
+
+let galleryActive = false;
+let currentGallery = null;
+let currentIndex = 0;
+let startX = null;
+
+function openGallery(name, idx){
+  galleryActive = true;
+  currentGallery = name;
+  currentIndex = idx || 0;
+  document.getElementById('lightbox-img').src = galleries[name][currentIndex];
+  document.getElementById('lightbox').classList.add('active');
+  document.getElementById('lb-prev').style.display = 'flex';
+  document.getElementById('lb-next').style.display = 'flex';
+  document.getElementById('lb-dots').style.display = 'flex';
+  renderDots();
+}
+
+function galleryNext(){
+  if(!galleryActive) return;
+  const arr = galleries[currentGallery];
+  currentIndex = (currentIndex + 1) % arr.length;
+  document.getElementById('lightbox-img').src = arr[currentIndex];
+  renderDots();
+}
+function galleryPrev(){
+  if(!galleryActive) return;
+  const arr = galleries[currentGallery];
+  currentIndex = (currentIndex - 1 + arr.length) % arr.length;
+  document.getElementById('lightbox-img').src = arr[currentIndex];
+  renderDots();
+}
+
+function renderDots(){
+  const dotsWrap = document.getElementById('lb-dots');
+  dotsWrap.innerHTML = '';
+  const arr = galleries[currentGallery] || [];
+  arr.forEach((_, i)=>{
+    const dot = document.createElement('div');
+    dot.className = 'lb-dot' + (i === currentIndex ? ' active' : '');
+    dot.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      currentIndex = i;
+      document.getElementById('lightbox-img').src = arr[currentIndex];
+      renderDots();
+    });
+    dotsWrap.appendChild(dot);
+  });
+}
+
+// Swipe support (gallery only)
+const lbImg = document.getElementById('lightbox-img');
+lbImg.addEventListener('touchstart', (e)=>{
+  if(!galleryActive) return;
+  startX = e.touches[0].clientX;
+}, {passive:true});
+
+lbImg.addEventListener('touchend', (e)=>{
+  if(!galleryActive || startX === null) return;
+  const endX = e.changedTouches[0].clientX;
+  const dx = startX - endX;
+  if(dx > 50) galleryNext();
+  if(dx < -50) galleryPrev();
+  startX = null;
+});
+
+// Keyboard arrows (desktop gallery only)
+document.addEventListener('keydown', (e)=>{
+  const active = document.getElementById('lightbox').classList.contains('active');
+  if(!active || !galleryActive) return;
+  if(e.key === 'ArrowRight') galleryNext();
+  if(e.key === 'ArrowLeft') galleryPrev();
+  if(e.key === 'Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>
